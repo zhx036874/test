@@ -1,0 +1,17 @@
+# 忽略所有的编译输出
+build/
+*.o
+*.obj
+
+# 忽略Qt生成的文件
+*.pro.user
+*.pro.user.*
+*.qmake.stash
+*.qmake.cache
+
+# 忽略临时文件
+*.log
+*.tmp
+*.swp
+
+# 忽略某个具体的文件
