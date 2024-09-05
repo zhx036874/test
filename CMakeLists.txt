@@ -12,17 +12,28 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-set(PROJECT_SOURCES
-        main.cpp
-        widget.cpp
-        widget.h
-        widget.ui
-)
+# set(PROJECT_SOURCES
+#         main.cpp
+#         widget.cpp
+#         widget.h
+#         widget.ui
+# )
 
+# 查找src目录下的所有源文件
+aux_source_directory(src SRC_FILES)
+# 添加头文件目录
+include_directories(src)
+# 自动查找 src 目录下的 .cpp 和 .h 文件
+file(GLOB SRC_FILES "src/*.cpp" "src/*.h" "src/*.ui")
+
+
+# target_include_directories(test PUBLIC include)
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(test
         MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
+        # ${PROJECT_SOURCES}
+        ${SRC_FILES}
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET test APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
